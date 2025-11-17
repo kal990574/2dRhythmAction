@@ -1,0 +1,105 @@
+using UnityEngine;
+
+public class InputManager : MonoBehaviour
+{
+    public static InputManager Instance { get; private set; }
+
+    [Header("References")]
+    public NoteController NoteController;
+
+    [Header("Input Settings")]
+    public float MaxInputWindow = 0.15f;
+
+    private SoundManager soundManager;
+    private JudgementManager judgementManager;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void Start()
+    {
+        soundManager = SoundManager.Instance;
+        judgementManager = JudgementManager.Instance;
+
+        if (soundManager == null)
+        {
+            Debug.LogError("SoundManager를 찾을 수 없습니다!");
+        }
+
+        if (judgementManager == null)
+        {
+            Debug.LogError("JudgementManager를 찾을 수 없습니다!");
+        }
+    }
+
+    private void Update()
+    {
+        if (GameManager.Instance?.CurrentState != GameState.Playing)
+            return;
+
+        CheckInput();
+    }
+
+    private void CheckInput()
+    {
+        // W 또는 ↑
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            ProcessInput(NoteType.Up);
+        }
+
+        // S 또는 ↓
+        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            ProcessInput(NoteType.Down);
+        }
+
+        // A 또는 ←
+        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            ProcessInput(NoteType.Left);
+        }
+
+        // D 또는 →
+        if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            ProcessInput(NoteType.Right);
+        }
+    }
+
+    private void ProcessInput(NoteType inputType)
+    {
+        float currentTime = soundManager.SongPosition;
+
+        // 해당 타입의 가장 가까운 노트 찾기
+        Note closestNote = NoteController.GetClosestNote(inputType, currentTime, MaxInputWindow);
+
+        if (closestNote != null)
+        {
+            float timeDiff = currentTime - closestNote.TargetTime;
+
+            // 판정 처리
+            JudgementType judgement = judgementManager.ProcessJudgement(closestNote, timeDiff);
+
+            // 노트 Hit 처리
+            NoteController.OnNoteHit(closestNote, timeDiff);
+
+            Debug.Log($"입력 성공: {inputType} - {judgement}");
+        }
+        else
+        {
+            // 입력했지만 맞는 노트가 없음
+            Debug.Log($"빈 입력: {inputType}");
+        }
+    }
+}
