@@ -6,7 +6,7 @@ public class SoundManager : MonoBehaviour
     public static SoundManager Instance { get; private set; }
 
     [Header("BPM Settings")]
-    public float BPM = 120f;
+    public float BPM = 135f;
     public float MusicStartDelay = 2f;
 
     [Header("Audio")]

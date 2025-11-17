@@ -219,6 +219,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 548e8153a4ffe2d41ad8af9128ae1cf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EnablePulse: 1
+  PulseAmount: 0.03
+  PulseCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &50665247
 GameObject:
   m_ObjectHideFlags: 0
@@ -350,6 +376,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 548e8153a4ffe2d41ad8af9128ae1cf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EnablePulse: 1
+  PulseAmount: 0.03
+  PulseCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &134002492
 GameObject:
   m_ObjectHideFlags: 0
@@ -1136,6 +1188,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 548e8153a4ffe2d41ad8af9128ae1cf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EnablePulse: 1
+  PulseAmount: 0.03
+  PulseCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -1367,6 +1445,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 548e8153a4ffe2d41ad8af9128ae1cf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EnablePulse: 1
+  PulseAmount: 0.03
+  PulseCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &714856119
 GameObject:
   m_ObjectHideFlags: 0
@@ -1467,6 +1571,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 548e8153a4ffe2d41ad8af9128ae1cf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EnablePulse: 1
+  PulseAmount: 0.03
+  PulseCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &750294760
 GameObject:
   m_ObjectHideFlags: 0
@@ -1564,7 +1694,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 755e18997cc3e764ea8da578c83e5e02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BPM: 120
+  BPM: 135
   MusicStartDelay: 2
   MusicClip: {fileID: 8300000, guid: 1c7390ff905addf4483307b84272a084, type: 3}
 --- !u!82 &756028228
@@ -2373,6 +2503,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 548e8153a4ffe2d41ad8af9128ae1cf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EnablePulse: 1
+  PulseAmount: 0.03
+  PulseCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1782675681
 GameObject:
   m_ObjectHideFlags: 0
