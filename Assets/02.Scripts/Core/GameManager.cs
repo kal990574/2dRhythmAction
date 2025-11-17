@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     {
         CurrentState = GameState.Ready;
         Debug.Log("GameManager 초기화 완료");
+        StartGame();
     }
 
     public void StartGame()

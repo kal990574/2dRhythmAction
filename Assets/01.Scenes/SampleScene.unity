@@ -434,7 +434,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -753,7 +753,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -973,14 +973,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c71a5d725cd94844884a1185bea1990, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NoteChart: {fileID: 0}
+  NoteChart: {fileID: 777398029}
   NoteTravelTime: 2
-  SpawnPosition: {fileID: 0}
-  JudgeLinePosition: {fileID: 0}
-  NotePrefabUp: {fileID: 0}
-  NotePrefabDown: {fileID: 0}
-  NotePrefabLeft: {fileID: 0}
-  NotePrefabRight: {fileID: 0}
+  SpawnPosition: {fileID: 50665248}
+  JudgeLinePosition: {fileID: 1782675682}
+  NotePrefabUp: {fileID: 1215154346334826322, guid: 866b6ef36849208409baa372584325a9, type: 3}
+  NotePrefabDown: {fileID: 6956155865113684080, guid: c36f2ee53ed59604ca95f96a256e3ef7, type: 3}
+  NotePrefabLeft: {fileID: 5634790101443584143, guid: bda8327013d95d14eb61a028b8b2e84c, type: 3}
+  NotePrefabRight: {fileID: 4812866005741527614, guid: 4f5e3cd234e7469419c65573f655dc17, type: 3}
 --- !u!1 &756028225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1028,7 +1028,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BPM: 120
   MusicStartDelay: 2
-  MusicClip: {fileID: 0}
+  MusicClip: {fileID: 8300000, guid: 1c7390ff905addf4483307b84272a084, type: 3}
 --- !u!82 &756028228
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1173,7 +1173,22 @@ MonoBehaviour:
   BPM: 120
   Notes:
   - Type: 2
-    TargetTime: 0
+    TargetTime: 2
+    SpawnTime: 0
+    IsProcessed: 0
+    NoteObject: {fileID: 0}
+  - Type: 1
+    TargetTime: 3
+    SpawnTime: 0
+    IsProcessed: 0
+    NoteObject: {fileID: 0}
+  - Type: 0
+    TargetTime: 4
+    SpawnTime: 0
+    IsProcessed: 0
+    NoteObject: {fileID: 0}
+  - Type: 3
+    TargetTime: 5
     SpawnTime: 0
     IsProcessed: 0
     NoteObject: {fileID: 0}
@@ -1268,7 +1283,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -1481,11 +1496,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 590877098f7d55a4582f529d4a39c76a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LifeText: {fileID: 0}
-  ScoreText: {fileID: 0}
-  MaxComboText: {fileID: 0}
-  CurrentComboText: {fileID: 0}
-  JudgementText: {fileID: 0}
+  LifeText: {fileID: 204800953}
+  ScoreText: {fileID: 1970241873}
+  MaxComboText: {fileID: 541435669}
+  CurrentComboText: {fileID: 878488332}
+  JudgementText: {fileID: 1971564309}
   JudgementDisplayDuration: 0.5
 --- !u!1 &1467994400
 GameObject:
@@ -1696,7 +1711,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -1832,7 +1847,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0

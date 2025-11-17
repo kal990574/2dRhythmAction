@@ -110,6 +110,11 @@ public class NoteController : MonoBehaviour
     private void CheckMissedNotes()
     {
         float currentTime = soundManager.SongPosition;
+
+        // 음악 시작 전에는 Miss 체크 안 함
+        if (currentTime < 0)
+            return;
+
         float missThreshold = 0.15f;
 
         for (int i = activeNotes.Count - 1; i >= 0; i--)
