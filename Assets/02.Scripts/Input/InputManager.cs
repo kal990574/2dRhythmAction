@@ -101,7 +101,11 @@ public class InputManager : MonoBehaviour
             // PlayerController에 판정 전달
             PlayerController.Instance?.OnJudgementReceived(judgement);
 
+            // UI에 판정 표시
             UIManager.Instance?.ShowJudgement(judgement);
+
+            // 카메라 흔들림
+            CameraShake.Instance?.ShakeByJudgement(judgement);
 
             Debug.Log($"입력 성공: {inputType} - {judgement}");
         }
