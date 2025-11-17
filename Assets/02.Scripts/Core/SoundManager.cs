@@ -3,6 +3,8 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class SoundManager : MonoBehaviour
 {
+    public static SoundManager Instance { get; private set; }
+
     [Header("BPM Settings")]
     public float BPM = 120f;
     public float MusicStartDelay = 2f;
@@ -11,7 +13,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip MusicClip;
 
     private AudioSource audioSource;
-    private float songPosition;      // 현재 음악 재생 위치 
+    private float songPosition;      // 현재 음악 재생 위치
     private float secPerBeat;        // 1비트당 시간
     private float dspSongTime;       // DSP 기준 음악 시작 시간
 
@@ -20,6 +22,17 @@ public class SoundManager : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         audioSource = GetComponent<AudioSource>();
         secPerBeat = 60f / BPM;
     }

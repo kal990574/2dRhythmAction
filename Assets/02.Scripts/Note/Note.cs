@@ -7,7 +7,8 @@ public class Note
     public float TargetTime;        // judge까지 시간
     public float SpawnTime;         // 노트 생성 시간
     public bool IsProcessed = false; // hit 처리
-
+    public GameObject NoteObject; 
+    
     public Note(NoteType type, float targetTime)
     {
         Type = type;

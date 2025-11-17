@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         CurrentState = GameState.Playing;
+        SoundManager.Instance?.PlayMusic();
         Debug.Log("게임 시작");
     }
 
