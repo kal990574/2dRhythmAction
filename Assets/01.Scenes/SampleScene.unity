@@ -1801,6 +1801,54 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1800726849
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1800726850}
+  - component: {fileID: 1800726851}
+  m_Layer: 0
+  m_Name: ParticleManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1800726850
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1800726849}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1800726851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1800726849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 279562fed23d8724bba946564ae013e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PerfectParticlePrefab: {fileID: 1491409544842045503, guid: 65a4621d43aeba644beefff1ebaf3715, type: 3}
+  GoodParticlePrefab: {fileID: 3781496061315786365, guid: 8015e15dd4a15524b86918fe0c97e901, type: 3}
+  MissParticlePrefab: {fileID: 4214451827163268367, guid: 0413785fc56a5464fba759d1dba2ea7b, type: 3}
+  ParticleSpawnPosition: {fileID: 1782675682}
 --- !u!1 &1970241871
 GameObject:
   m_ObjectHideFlags: 0
@@ -2145,3 +2193,4 @@ SceneRoots:
   - {fileID: 1782675682}
   - {fileID: 147993265}
   - {fileID: 948602739}
+  - {fileID: 1800726850}

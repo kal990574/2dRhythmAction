@@ -107,6 +107,9 @@ public class InputManager : MonoBehaviour
             // 카메라 흔들림
             CameraShake.Instance?.ShakeByJudgement(judgement);
 
+            // 파티클 효과
+            ParticleManager.Instance?.PlayParticleAtJudgeLine(judgement);
+
             Debug.Log($"입력 성공: {inputType} - {judgement}");
         }
         else
