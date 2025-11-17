@@ -55,24 +55,28 @@ public class InputManager : MonoBehaviour
         // W 또는 ↑
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
         {
+            PlayerAnimationController.Instance?.PlayAttackAnimation(NoteType.Up);
             ProcessInput(NoteType.Up);
         }
 
         // S 또는 ↓
         if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
         {
+            PlayerAnimationController.Instance?.PlayAttackAnimation(NoteType.Down);
             ProcessInput(NoteType.Down);
         }
 
         // A 또는 ←
         if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
         {
+            PlayerAnimationController.Instance?.PlayAttackAnimation(NoteType.Left);
             ProcessInput(NoteType.Left);
         }
 
         // D 또는 →
         if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
         {
+            PlayerAnimationController.Instance?.PlayAttackAnimation(NoteType.Right);
             ProcessInput(NoteType.Right);
         }
     }
@@ -99,6 +103,12 @@ public class InputManager : MonoBehaviour
 
             // UI에 판정 표시
             UIManager.Instance?.ShowJudgement(judgement);
+
+            // 카메라 흔들림
+            CameraShake.Instance?.ShakeByJudgement(judgement);
+
+            // 파티클 효과
+            ParticleManager.Instance?.PlayParticleAtJudgeLine(judgement);
 
             Debug.Log($"입력 성공: {inputType} - {judgement}");
         }
