@@ -96,7 +96,7 @@ public class InputManager : MonoBehaviour
             JudgementType judgement = judgementManager.ProcessJudgement(closestNote, timeDiff);
 
             // 노트 Hit 처리
-            NoteController.OnNoteHit(closestNote, timeDiff);
+            NoteController.OnNoteHit(closestNote, timeDiff, judgement);
 
             // PlayerController에 판정 전달
             PlayerController.Instance?.OnJudgementReceived(judgement);
