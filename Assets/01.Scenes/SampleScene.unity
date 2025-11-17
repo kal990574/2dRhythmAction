@@ -144,7 +144,7 @@ Transform:
   m_GameObject: {fileID: 50665247}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9, y: -1.18, z: 0}
+  m_LocalPosition: {x: 8, y: -1.18, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -974,7 +974,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NoteChart: {fileID: 777398029}
-  NoteTravelTime: 2
+  NoteTravelTime: 5
   SpawnPosition: {fileID: 50665248}
   JudgeLinePosition: {fileID: 1782675682}
   NotePrefabUp: {fileID: 1215154346334826322, guid: 866b6ef36849208409baa372584325a9, type: 3}
@@ -1171,27 +1171,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BPM: 120
-  Notes:
-  - Type: 2
-    TargetTime: 2
-    SpawnTime: 0
-    IsProcessed: 0
-    NoteObject: {fileID: 0}
-  - Type: 1
-    TargetTime: 3
-    SpawnTime: 0
-    IsProcessed: 0
-    NoteObject: {fileID: 0}
-  - Type: 0
-    TargetTime: 4
-    SpawnTime: 0
-    IsProcessed: 0
-    NoteObject: {fileID: 0}
-  - Type: 3
-    TargetTime: 5
-    SpawnTime: 0
-    IsProcessed: 0
-    NoteObject: {fileID: 0}
+  AutoGenerate: 1
+  AutoNoteCount: 30
+  StartBeat: 10
+  BeatsInterval: 2
+  Notes: []
 --- !u!1 &878488330
 GameObject:
   m_ObjectHideFlags: 0
@@ -1249,7 +1233,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: CurrentCombo
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1813,7 +1797,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Perfect
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

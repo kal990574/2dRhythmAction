@@ -5,7 +5,7 @@ public class NoteController : MonoBehaviour
 {
     [Header("Note Settings")]
     public NoteChart NoteChart;
-    public float NoteTravelTime = 2f;
+    public float NoteTravelTime = 5f;
 
     [Header("Spawn & Judge Position")]
     public Transform SpawnPosition;    
@@ -93,7 +93,7 @@ public class NoteController : MonoBehaviour
         note.NoteObject = noteObj;
         activeNotes.Add(note);
 
-        Debug.Log($"노트 생성: {note.Type} at {soundManager.SongPosition:F2}초");
+        Debug.Log($"노트 생성: {note.Type} | SpawnTime: {note.SpawnTime:F2}초 | TargetTime: {note.TargetTime:F2}초 | CurrentTime: {soundManager.SongPosition:F2}초");
     }
 
     private void MoveNotes()
