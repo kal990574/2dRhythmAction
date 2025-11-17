@@ -131,6 +131,10 @@ public class NoteController : MonoBehaviour
         note.IsProcessed = true;
         Debug.Log($"Miss! Type: {note.Type}");
 
+        // Miss 판정 전달
+        PlayerController.Instance?.OnJudgementReceived(JudgementType.Miss);
+        UIManager.Instance?.ShowJudgement(JudgementType.Miss);
+
         DestroyNote(note);
     }
 

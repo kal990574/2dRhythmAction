@@ -94,6 +94,12 @@ public class InputManager : MonoBehaviour
             // 노트 Hit 처리
             NoteController.OnNoteHit(closestNote, timeDiff);
 
+            // PlayerController에 판정 전달
+            PlayerController.Instance?.OnJudgementReceived(judgement);
+
+            // UI에 판정 표시
+            UIManager.Instance?.ShowJudgement(judgement);
+
             Debug.Log($"입력 성공: {inputType} - {judgement}");
         }
         else

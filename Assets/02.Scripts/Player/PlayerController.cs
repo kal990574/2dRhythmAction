@@ -97,7 +97,10 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateUI()
     {
-        // UIManager
+        UIManager.Instance?.UpdateScore(Score);
+        UIManager.Instance?.UpdateLife(CurrentLife, MaxLife);
+        UIManager.Instance?.UpdateMaxCombo(MaxCombo);
+        UIManager.Instance?.UpdateCurrentCombo(CurrentCombo);
     }
 
     public void ResetPlayer()
