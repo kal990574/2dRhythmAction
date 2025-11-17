@@ -143,11 +143,31 @@ public class NoteController : MonoBehaviour
         DestroyNote(note);
     }
 
-    public void OnNoteHit(Note note, float timeDiff)
+    public void OnNoteHit(Note note, float timeDiff, JudgementType judgement)
     {
         note.IsProcessed = true;
         Debug.Log($"Hit! Type: {note.Type}, Diff: {timeDiff:F3}초");
-        DestroyNote(note);
+
+        // Hit 효과 재생
+        if (note.NoteObject != null)
+        {
+            NoteHitEffect hitEffect = note.NoteObject.GetComponent<NoteHitEffect>();
+            if (hitEffect != null)
+            {
+                hitEffect.PlayHitEffect(note.Type, judgement);
+                // activeNotes에서만 제거 (GameObject는 HitEffect가 알아서 삭제)
+                activeNotes.Remove(note);
+            }
+            else
+            {
+                // HitEffect가 없으면 바로 삭제
+                DestroyNote(note);
+            }
+        }
+        else
+        {
+            activeNotes.Remove(note);
+        }
     }
 
     private void DestroyNote(Note note)
