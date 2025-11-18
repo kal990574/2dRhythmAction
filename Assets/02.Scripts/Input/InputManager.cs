@@ -8,7 +8,7 @@ public class InputManager : MonoBehaviour
     public NoteController NoteController;
 
     [Header("Input Settings")]
-    public float MaxInputWindow = 0.15f;
+    public float MaxInputWindow = 0.5f;
 
     private SoundManager soundManager;
     private JudgementManager judgementManager;

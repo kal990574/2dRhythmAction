@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     [Header("Score Settings")]
     public int PerfectScore = 100;
     public int GoodScore = 50;
-    public float ComboMultiplier = 0.1f;
+    public float ComboMultiplier = 0.2f;
 
     private void Awake()
     {
