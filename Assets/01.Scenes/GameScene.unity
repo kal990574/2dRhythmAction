@@ -1070,10 +1070,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d22e6ac7acefda47bb29eb2a1f08978, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PerfectDuration: 0.15
-  PerfectMagnitude: 0.6
-  GoodDuration: 0.15
-  GoodMagnitude: 0.5
+  PerfectDuration: 0.1
+  PerfectMagnitude: 0.3
+  GoodDuration: 0.1
+  GoodMagnitude: 0.2
 --- !u!95 &519420034
 Animator:
   serializedVersion: 7
