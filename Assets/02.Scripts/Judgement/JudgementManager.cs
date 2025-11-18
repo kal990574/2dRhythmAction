@@ -5,9 +5,8 @@ public class JudgementManager : MonoBehaviour
     public static JudgementManager Instance { get; private set; }
 
     [Header("Judgement Timing Windows")]
-    public float PerfectWindow = 0.05f;
-    public float GoodWindow = 0.1f;
-    public float MissWindow = 0.15f;
+    public float PerfectWindow = 0.1f;
+    public float GoodWindow = 0.5f;
 
     private void Awake()
     {
