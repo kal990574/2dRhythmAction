@@ -1,12 +1,19 @@
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
+using System.Collections.Generic;
 
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance { get; private set; }
 
+    [Header("Life UI (Hearts)")]
+    public Transform HeartContainer;
+    public GameObject HeartPrefab;
+    public Sprite FullHeartSprite;
+    public Sprite EmptyHeartSprite;
+
     [Header("UI Text References")]
-    public TextMeshProUGUI LifeText;
     public TextMeshProUGUI ScoreText;
     public TextMeshProUGUI MaxComboText;
     public TextMeshProUGUI CurrentComboText;
@@ -15,7 +22,9 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI JudgementText;
     public float JudgementDisplayDuration = 0.5f;
 
+    private List<Image> heartImages = new List<Image>();
     private float judgementTimer = 0f;
+    private int maxLife = 3;
 
     private void Awake()
     {
@@ -43,11 +52,70 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void InitializeHearts(int maxLifeCount)
+    {
+        if (HeartContainer == null || HeartPrefab == null)
+        {
+            Debug.LogError("HeartContainer 또는 HeartPrefab이 할당되지 않았습니다!");
+            return;
+        }
+
+        maxLife = maxLifeCount;
+
+        // 기존 하트 제거
+        foreach (Transform child in HeartContainer)
+        {
+            Destroy(child.gameObject);
+        }
+        heartImages.Clear();
+
+        // MaxLife만큼 하트 생성
+        for (int i = 0; i < maxLife; i++)
+        {
+            GameObject heartObj = Instantiate(HeartPrefab, HeartContainer);
+            Image heartImage = heartObj.GetComponent<Image>();
+
+            if (heartImage != null)
+            {
+                heartImage.sprite = FullHeartSprite;
+                heartImages.Add(heartImage);
+            }
+            else
+            {
+                Debug.LogError("HeartPrefab에 Image 컴포넌트가 없습니다!");
+            }
+        }
+
+        Debug.Log($"하트 UI 초기화 완료: {maxLife}개");
+    }
+
     public void UpdateLife(int currentLife, int maxLife)
     {
-        if (LifeText != null)
+        // 하트가 초기화되지 않았으면 초기화
+        if (heartImages.Count == 0)
         {
-            LifeText.text = $"LIFE: {currentLife} / {maxLife}";
+            InitializeHearts(maxLife);
+        }
+
+        // 하트 개수가 다르면 재초기화
+        if (heartImages.Count != maxLife)
+        {
+            InitializeHearts(maxLife);
+        }
+
+        // currentLife에 따라 하트 Sprite 변경
+        for (int i = 0; i < heartImages.Count; i++)
+        {
+            if (i < currentLife)
+            {
+                // 살아있는 하트
+                heartImages[i].sprite = FullHeartSprite;
+            }
+            else
+            {
+                // 비어있는 하트
+                heartImages[i].sprite = EmptyHeartSprite;
+            }
         }
     }
 
