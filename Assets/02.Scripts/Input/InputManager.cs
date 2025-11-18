@@ -95,6 +95,11 @@ public class InputManager : MonoBehaviour
             // 판정 처리
             JudgementType judgement = judgementManager.ProcessJudgement(closestNote, timeDiff);
 
+            // 노트 위치 저장
+            Vector3 notePosition = closestNote.NoteObject != null
+                ? closestNote.NoteObject.transform.position
+                : Vector3.zero;
+
             // 노트 Hit 처리
             NoteController.OnNoteHit(closestNote, timeDiff, judgement);
 
@@ -108,7 +113,7 @@ public class InputManager : MonoBehaviour
             CameraShake.Instance?.ShakeByJudgement(judgement);
 
             // 파티클 효과
-            ParticleManager.Instance?.PlayParticleAtJudgeLine(judgement);
+            ParticleManager.Instance?.PlayParticle(judgement, notePosition);
 
             Debug.Log($"입력 성공: {inputType} - {judgement}");
         }
