@@ -276,16 +276,26 @@ public class UIManager : MonoBehaviour
 
     private void AnimateMaxCombo()
     {
-        if (MaxComboText2UI == null) return;
-
         // 빛나는 효과
-        MaxComboText2UI.DOKill();
+        if (MaxComboText1UI != null)
+        {
+            MaxComboText1UI.DOKill();
+            Color originalColor1 = MaxComboText1UI.color;
+            Sequence seq1 = DOTween.Sequence();
+            seq1.Append(MaxComboText1UI.DOColor(Color.blue, MaxComboFlashDuration));
+            seq1.Append(MaxComboText1UI.DOColor(originalColor1, MaxComboFlashDuration));
+            seq1.Join(MaxComboText1UI.transform.DOPunchScale(Vector3.one * MaxComboPunchStrength, MaxComboPunchDuration));
+        }
 
-        Color originalColor = MaxComboText2UI.color;
-        Sequence seq = DOTween.Sequence();
-        seq.Append(MaxComboText2UI.DOColor(Color.yellow, MaxComboFlashDuration));
-        seq.Append(MaxComboText2UI.DOColor(originalColor, MaxComboFlashDuration));
-        seq.Join(MaxComboText2UI.transform.DOPunchScale(Vector3.one * MaxComboPunchStrength, MaxComboPunchDuration));
+        if (MaxComboText2UI != null)
+        {
+            MaxComboText2UI.DOKill();
+            Color originalColor2 = MaxComboText2UI.color;
+            Sequence seq2 = DOTween.Sequence();
+            seq2.Append(MaxComboText2UI.DOColor(Color.blue, MaxComboFlashDuration));
+            seq2.Append(MaxComboText2UI.DOColor(originalColor2, MaxComboFlashDuration));
+            seq2.Join(MaxComboText2UI.transform.DOPunchScale(Vector3.one * MaxComboPunchStrength, MaxComboPunchDuration));
+        }
     }
 
     private void AnimateJudgement(JudgementType judgement)

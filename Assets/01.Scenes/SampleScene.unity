@@ -2176,6 +2176,21 @@ MonoBehaviour:
   CurrentComboTextUI: {fileID: 878488332}
   JudgementText: {fileID: 1971564309}
   JudgementDisplayDuration: 0.5
+  ScorePunchStrength: 0.3
+  ScorePunchDuration: 0.2
+  ComboPunchStrength: 0.3
+  ComboPunchDuration: 0.3
+  ComboFadeDuration: 0.3
+  MaxComboPunchStrength: 0.2
+  MaxComboPunchDuration: 0.3
+  MaxComboFlashDuration: 0.15
+  JudgementScalePerfect: 1.5
+  JudgementScaleGood: 1.2
+  JudgementScaleDuration: 0.2
+  LifeShakeDuration: 0.4
+  LifeShakeStrength: 15
+  LifeFlashDuration: 0.1
+  LifeFlashReturnDuration: 0.2
 --- !u!1 &1183233806
 GameObject:
   m_ObjectHideFlags: 0
