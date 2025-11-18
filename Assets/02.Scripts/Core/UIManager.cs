@@ -54,6 +54,7 @@ public class UIManager : MonoBehaviour
     private float judgementTimer = 0f;
     private int maxLife = 3;
     private int previousLife = -1;
+    private int previousScore = 0;
     private int previousMaxCombo = 0;
 
     private void Awake()
@@ -165,7 +166,14 @@ public class UIManager : MonoBehaviour
         if (ScoreTextUI != null)
         {
             ScoreTextUI.text = $"{score:N0}";
-            AnimateScore();
+
+            // 점수가 실제로 증가했을 때만 애니메이션
+            if (score > previousScore)
+            {
+                AnimateScore();
+            }
+
+            previousScore = score;
         }
     }
 
