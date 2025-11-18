@@ -2039,10 +2039,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BPM: 270
-  AutoGenerate: 1
-  AutoNoteCount: 300
-  StartBeat: 10
-  BeatsInterval: 2
+  AutoGenerate: 0
+  AutoNoteCount: 0
+  StartBeat: 0
+  BeatsInterval: 0
   UseSections: 1
   BeatSections:
   - StartTime: 6.2
@@ -2068,7 +2068,7 @@ MonoBehaviour:
     BeatsInterval: 2
   - StartTime: 103
     EndTime: 118
-    BeatsInterval: 6
+    BeatsInterval: 4
   - StartTime: 119
     EndTime: 131
     BeatsInterval: 2

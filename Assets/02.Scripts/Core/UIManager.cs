@@ -258,6 +258,7 @@ public class UIManager : MonoBehaviour
 
         // 작은 펀치 스케일 효과
         ScoreTextUI.transform.DOKill();
+        ScoreTextUI.transform.localScale = Vector3.one; // Scale 리셋
         ScoreTextUI.transform.DOPunchScale(Vector3.one * ScorePunchStrength, ScorePunchDuration, 5, 0.5f)
             .SetEase(Ease.OutQuad);
     }
@@ -268,6 +269,7 @@ public class UIManager : MonoBehaviour
 
         // 큰 펀치 스케일 + 살짝 튕기는 효과
         CurrentComboTextUI.transform.DOKill();
+        CurrentComboTextUI.transform.localScale = Vector3.one; // Scale 리셋
         CurrentComboTextUI.transform.DOPunchScale(Vector3.one * ComboPunchStrength, ComboPunchDuration, 8, 0.8f)
             .SetEase(Ease.OutBack);
     }
@@ -288,6 +290,8 @@ public class UIManager : MonoBehaviour
         if (MaxComboText1UI != null)
         {
             MaxComboText1UI.DOKill();
+            MaxComboText1UI.transform.DOKill();
+            MaxComboText1UI.transform.localScale = Vector3.one; // Scale 리셋
             Color originalColor1 = MaxComboText1UI.color;
             Sequence seq1 = DOTween.Sequence();
             seq1.Append(MaxComboText1UI.DOColor(Color.blue, MaxComboFlashDuration));
@@ -298,6 +302,8 @@ public class UIManager : MonoBehaviour
         if (MaxComboText2UI != null)
         {
             MaxComboText2UI.DOKill();
+            MaxComboText2UI.transform.DOKill();
+            MaxComboText2UI.transform.localScale = Vector3.one; // Scale 리셋
             Color originalColor2 = MaxComboText2UI.color;
             Sequence seq2 = DOTween.Sequence();
             seq2.Append(MaxComboText2UI.DOColor(Color.blue, MaxComboFlashDuration));
