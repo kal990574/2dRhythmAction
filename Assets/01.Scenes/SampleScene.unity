@@ -1584,7 +1584,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BPM: 135
-  MusicStartDelay: 2
+  MusicStartDelay: 0
   MusicClip: {fileID: 8300000, guid: 1c7390ff905addf4483307b84272a084, type: 3}
   PerfectHitSound: {fileID: 8300000, guid: af66162561d2eed40ad49268cab318bb, type: 3}
   GoodHitSound: {fileID: 8300000, guid: a58e438b7cfa445498120af0e6169082, type: 3}
@@ -3023,8 +3023,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 32
+  m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

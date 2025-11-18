@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
+using DG.Tweening;
 
 public class UIManager : MonoBehaviour
 {
@@ -23,9 +24,37 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI JudgementText;
     public float JudgementDisplayDuration = 0.5f;
 
+    [Header("DOTween Animation Settings")]
+    [Header("Score Animation")]
+    public float ScorePunchStrength = 0.15f;
+    public float ScorePunchDuration = 0.2f;
+
+    [Header("Combo Animation")]
+    public float ComboPunchStrength = 0.3f;
+    public float ComboPunchDuration = 0.3f;
+    public float ComboFadeDuration = 0.3f;
+
+    [Header("Max Combo Animation")]
+    public float MaxComboPunchStrength = 0.2f;
+    public float MaxComboPunchDuration = 0.3f;
+    public float MaxComboFlashDuration = 0.15f;
+
+    [Header("Judgement Animation")]
+    public float JudgementScalePerfect = 1.5f;
+    public float JudgementScaleGood = 1.2f;
+    public float JudgementScaleDuration = 0.2f;
+
+    [Header("Life Loss Animation")]
+    public float LifeShakeDuration = 0.4f;
+    public float LifeShakeStrength = 15f;
+    public float LifeFlashDuration = 0.1f;
+    public float LifeFlashReturnDuration = 0.2f;
+
     private List<Image> heartImages = new List<Image>();
     private float judgementTimer = 0f;
     private int maxLife = 3;
+    private int previousLife = -1;
+    private int previousMaxCombo = 0;
 
     private void Awake()
     {
@@ -96,6 +125,7 @@ public class UIManager : MonoBehaviour
         if (heartImages.Count == 0)
         {
             InitializeHearts(maxLife);
+            previousLife = currentLife;
         }
 
         // 하트 개수가 다르면 재초기화
@@ -103,6 +133,10 @@ public class UIManager : MonoBehaviour
         {
             InitializeHearts(maxLife);
         }
+
+        // Life 감소 감지
+        bool lifeLost = previousLife > currentLife;
+        previousLife = currentLife;
 
         // currentLife에 따라 하트 Sprite 변경
         for (int i = 0; i < heartImages.Count; i++)
@@ -118,6 +152,12 @@ public class UIManager : MonoBehaviour
                 heartImages[i].sprite = EmptyHeartSprite;
             }
         }
+
+        // Life 감소 시 애니메이션
+        if (lifeLost)
+        {
+            AnimateLifeLoss();
+        }
     }
 
     public void UpdateScore(int score)
@@ -125,6 +165,7 @@ public class UIManager : MonoBehaviour
         if (ScoreTextUI != null)
         {
             ScoreTextUI.text = $"{score:N0}";
+            AnimateScore();
         }
     }
 
@@ -133,6 +174,14 @@ public class UIManager : MonoBehaviour
         if (MaxComboText2UI != null)
         {
             MaxComboText2UI.text = $"{maxCombo}";
+
+            // 값이 실제로 갱신되었을 때만 애니메이션
+            if (maxCombo > previousMaxCombo)
+            {
+                AnimateMaxCombo();
+            }
+
+            previousMaxCombo = maxCombo;
         }
     }
 
@@ -143,10 +192,12 @@ public class UIManager : MonoBehaviour
             if (currentCombo > 0)
             {
                 CurrentComboTextUI.text = $"{currentCombo} COMBO";
+                AnimateCombo();
             }
             else
             {
                 CurrentComboTextUI.text = "";
+                AnimateComboEnd();
             }
         }
     }
@@ -175,6 +226,7 @@ public class UIManager : MonoBehaviour
         }
 
         judgementTimer = JudgementDisplayDuration;
+        AnimateJudgement(judgement);
     }
 
     public void ResetUI()
@@ -187,6 +239,95 @@ public class UIManager : MonoBehaviour
         if (JudgementText != null)
         {
             JudgementText.text = "";
+        }
+    }
+
+    // ========== DOTween 애니메이션 함수들 ==========
+
+    private void AnimateScore()
+    {
+        if (ScoreTextUI == null) return;
+
+        // 작은 펀치 스케일 효과
+        ScoreTextUI.transform.DOKill();
+        ScoreTextUI.transform.DOPunchScale(Vector3.one * ScorePunchStrength, ScorePunchDuration, 5, 0.5f)
+            .SetEase(Ease.OutQuad);
+    }
+
+    private void AnimateCombo()
+    {
+        if (CurrentComboTextUI == null) return;
+
+        // 큰 펀치 스케일 + 살짝 튕기는 효과
+        CurrentComboTextUI.transform.DOKill();
+        CurrentComboTextUI.transform.DOPunchScale(Vector3.one * ComboPunchStrength, ComboPunchDuration, 8, 0.8f)
+            .SetEase(Ease.OutBack);
+    }
+
+    private void AnimateComboEnd()
+    {
+        if (CurrentComboTextUI == null) return;
+
+        // 페이드 아웃 효과
+        CurrentComboTextUI.DOKill();
+        CurrentComboTextUI.DOFade(0f, ComboFadeDuration)
+            .OnComplete(() => CurrentComboTextUI.alpha = 1f);
+    }
+
+    private void AnimateMaxCombo()
+    {
+        if (MaxComboText2UI == null) return;
+
+        // 빛나는 효과
+        MaxComboText2UI.DOKill();
+
+        Color originalColor = MaxComboText2UI.color;
+        Sequence seq = DOTween.Sequence();
+        seq.Append(MaxComboText2UI.DOColor(Color.yellow, MaxComboFlashDuration));
+        seq.Append(MaxComboText2UI.DOColor(originalColor, MaxComboFlashDuration));
+        seq.Join(MaxComboText2UI.transform.DOPunchScale(Vector3.one * MaxComboPunchStrength, MaxComboPunchDuration));
+    }
+
+    private void AnimateJudgement(JudgementType judgement)
+    {
+        if (JudgementText == null) return;
+
+        JudgementText.transform.DOKill();
+
+        // 판정에 따라 다른 스케일
+        float targetScale = judgement == JudgementType.Perfect ? JudgementScalePerfect : JudgementScaleGood;
+
+        // 스케일 인 애니메이션
+        JudgementText.transform.localScale = Vector3.zero;
+        JudgementText.transform.DOScale(targetScale, JudgementScaleDuration)
+            .SetEase(Ease.OutBack);
+
+        // 페이드 아웃
+        JudgementText.DOKill();
+        JudgementText.alpha = 1f;
+        JudgementText.DOFade(0f, JudgementDisplayDuration)
+            .SetDelay(JudgementDisplayDuration * 0.5f);
+    }
+
+    private void AnimateLifeLoss()
+    {
+        if (HeartContainer == null) return;
+
+        // 하트 컨테이너 흔들림 + 깜빡임
+        HeartContainer.DOKill();
+        HeartContainer.DOShakePosition(LifeShakeDuration, LifeShakeStrength, 20, 90f);
+
+        // 빨간색 플래시
+        foreach (var heart in heartImages)
+        {
+            if (heart != null)
+            {
+                heart.DOKill();
+                Color originalColor = heart.color;
+                Sequence seq = DOTween.Sequence();
+                seq.Append(heart.DOColor(Color.red, LifeFlashDuration));
+                seq.Append(heart.DOColor(originalColor, LifeFlashReturnDuration));
+            }
         }
     }
 }

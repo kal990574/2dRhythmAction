@@ -7,7 +7,7 @@ public class SoundManager : MonoBehaviour
 
     [Header("BPM Settings")]
     public float BPM = 135f;
-    public float MusicStartDelay = 2f;
+    public float MusicStartDelay = 1f;
 
     [Header("Audio")]
     public AudioClip MusicClip;
