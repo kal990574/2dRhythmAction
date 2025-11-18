@@ -47,20 +47,6 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("게임 오버");
     }
-
-    public void RestartGame()
-    {
-        Debug.Log("게임 재시작");
-
-        // 플레이어 상태 리셋
-        PlayerController.Instance?.ResetPlayer();
-
-        // UI 리셋
-        UIManager.Instance?.ResetUI();
-
-        // 게임 시작
-        StartGame();
-    }
 }
 
 public enum GameState

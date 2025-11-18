@@ -27,8 +27,7 @@ public class UIManager : MonoBehaviour
     [Header("Game Over UI")]
     public GameObject GameOverPanel;
     public TextMeshProUGUI GameOverText;
-    public UnityEngine.UI.Button RestartButton;
-    public UnityEngine.UI.Button QuitButton;
+    public Button QuitButton;
 
     [Header("DOTween Animation Settings")]
     [Header("Score Animation")]
@@ -85,11 +84,6 @@ public class UIManager : MonoBehaviour
         }
 
         // 버튼 이벤트 연결
-        if (RestartButton != null)
-        {
-            RestartButton.onClick.AddListener(OnRestartClicked);
-        }
-
         if (QuitButton != null)
         {
             QuitButton.onClick.AddListener(OnQuitClicked);
@@ -263,21 +257,6 @@ public class UIManager : MonoBehaviour
         AnimateJudgement(judgement);
     }
 
-    public void ResetUI()
-    {
-        UpdateLife(3, 3);
-        UpdateScore(0);
-        UpdateMaxCombo(0);
-        UpdateCurrentCombo(0);
-
-        if (JudgementText != null)
-        {
-            JudgementText.text = "";
-        }
-
-        HideGameOver();
-    }
-
     public void ShowGameOver()
     {
         if (GameOverPanel == null)
@@ -297,21 +276,6 @@ public class UIManager : MonoBehaviour
         }
 
         Debug.Log("Game Over UI 표시");
-    }
-
-    public void HideGameOver()
-    {
-        if (GameOverPanel != null)
-        {
-            GameOverPanel.SetActive(false);
-        }
-    }
-
-    private void OnRestartClicked()
-    {
-        Debug.Log("Restart 버튼 클릭");
-        HideGameOver();
-        GameManager.Instance?.RestartGame();
     }
 
     private void OnQuitClicked()
