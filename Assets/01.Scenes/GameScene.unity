@@ -918,7 +918,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NoteController: {fileID: 750294762}
-  MaxInputWindow: 0.5
+  MaxInputWindow: 0.3
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1476,7 +1476,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PerfectWindow: 0.1
-  GoodWindow: 0.5
+  GoodWindow: 0.3
 --- !u!4 &637539011
 Transform:
   m_ObjectHideFlags: 0
@@ -1797,7 +1797,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NoteChart: {fileID: 777398029}
-  NoteTravelTime: 2
+  NoteTravelTime: 1
   SpawnPosition: {fileID: 50665248}
   JudgeLinePosition: {fileID: 1782675682}
   RandomizeYPosition: 1
@@ -2041,9 +2041,9 @@ MonoBehaviour:
   BPM: 135
   AutoGenerate: 1
   AutoNoteCount: 300
-  StartBeat: 14
+  StartBeat: 10
   BeatsInterval: 2
-  NoteTravelTime: 2
+  NoteTravelTime: 1
   Notes: []
 --- !u!1 &784610849
 GameObject:
