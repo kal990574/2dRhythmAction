@@ -115,6 +115,9 @@ public class InputManager : MonoBehaviour
             // 파티클 효과
             ParticleManager.Instance?.PlayParticle(judgement, notePosition);
 
+            // 히트 사운드 재생
+            SoundManager.Instance?.PlayHitSound(judgement, inputType);
+
             Debug.Log($"입력 성공: {inputType} - {judgement}");
         }
         else
