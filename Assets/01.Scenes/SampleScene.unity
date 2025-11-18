@@ -1722,6 +1722,10 @@ MonoBehaviour:
   BPM: 135
   MusicStartDelay: 2
   MusicClip: {fileID: 8300000, guid: 1c7390ff905addf4483307b84272a084, type: 3}
+  PerfectHitSound: {fileID: 8300000, guid: af66162561d2eed40ad49268cab318bb, type: 3}
+  GoodHitSound: {fileID: 8300000, guid: a58e438b7cfa445498120af0e6169082, type: 3}
+  HitSoundVolume: 2
+  PitchVariationAmount: 0.3
 --- !u!82 &756028228
 AudioSource:
   m_ObjectHideFlags: 0
