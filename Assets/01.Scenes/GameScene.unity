@@ -1070,9 +1070,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d22e6ac7acefda47bb29eb2a1f08978, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PerfectDuration: 0.2
-  PerfectMagnitude: 0.7
-  GoodDuration: 0.2
+  PerfectDuration: 0.15
+  PerfectMagnitude: 0.6
+  GoodDuration: 0.15
   GoodMagnitude: 0.5
 --- !u!95 &519420034
 Animator:
@@ -1797,7 +1797,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NoteChart: {fileID: 777398029}
-  NoteTravelTime: 5
+  NoteTravelTime: 2
   SpawnPosition: {fileID: 50665248}
   JudgeLinePosition: {fileID: 1782675682}
   RandomizeYPosition: 1
@@ -1856,7 +1856,8 @@ MonoBehaviour:
   MusicStartDelay: 0
   MusicClip: {fileID: 8300000, guid: 1c7390ff905addf4483307b84272a084, type: 3}
   PerfectHitSound: {fileID: 8300000, guid: af66162561d2eed40ad49268cab318bb, type: 3}
-  GoodHitSound: {fileID: 8300000, guid: a58e438b7cfa445498120af0e6169082, type: 3}
+  GoodHitSound: {fileID: 8300000, guid: 6c12452c6d5b8ab4c8217de31e14e612, type: 3}
+  MissSound: {fileID: 8300000, guid: a58e438b7cfa445498120af0e6169082, type: 3}
   HitSoundVolume: 2
   PitchVariationAmount: 0.3
 --- !u!82 &756028228
@@ -2040,9 +2041,9 @@ MonoBehaviour:
   BPM: 135
   AutoGenerate: 1
   AutoNoteCount: 300
-  StartBeat: 15
+  StartBeat: 14
   BeatsInterval: 2
-  NoteTravelTime: 5
+  NoteTravelTime: 2
   Notes: []
 --- !u!1 &784610849
 GameObject:

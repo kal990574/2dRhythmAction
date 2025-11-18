@@ -15,6 +15,7 @@ public class SoundManager : MonoBehaviour
     [Header("Hit Sounds")]
     public AudioClip PerfectHitSound;
     public AudioClip GoodHitSound;
+    public AudioClip MissSound;
 
     [Header("Hit Sound Settings")]
     public float HitSoundVolume = 2f;
@@ -121,7 +122,8 @@ public class SoundManager : MonoBehaviour
         {
             JudgementType.Perfect => PerfectHitSound,
             JudgementType.Good => GoodHitSound,
-            _ => null  // Miss는 사운드 없음
+            JudgementType.Miss => MissSound,
+            _ => null
         };
     }
 

@@ -154,6 +154,9 @@ public class NoteController : MonoBehaviour
         PlayerController.Instance?.OnJudgementReceived(JudgementType.Miss);
         UIManager.Instance?.ShowJudgement(JudgementType.Miss);
 
+        // Miss 사운드 재생
+        SoundManager.Instance?.PlayHitSound(JudgementType.Miss, note.Type);
+
         DestroyNote(note);
     }
 
