@@ -221,7 +221,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FitToCamera: 1
   EnablePulse: 1
-  PulseAmount: 0.06
+  PulseAmount: 0.03
   PulseCurve:
     serializedVersion: 2
     m_Curve:
@@ -382,7 +382,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FitToCamera: 1
   EnablePulse: 1
-  PulseAmount: 0.06
+  PulseAmount: 0.03
   PulseCurve:
     serializedVersion: 2
     m_Curve:
@@ -1333,7 +1333,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FitToCamera: 1
-  EnablePulse: 1
+  EnablePulse: 0
   PulseAmount: 0.06
   PulseCurve:
     serializedVersion: 2
@@ -1594,7 +1594,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FitToCamera: 1
   EnablePulse: 1
-  PulseAmount: 0.06
+  PulseAmount: 0.03
   PulseCurve:
     serializedVersion: 2
     m_Curve:
@@ -1724,7 +1724,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FitToCamera: 1
   EnablePulse: 1
-  PulseAmount: 0.06
+  PulseAmount: 0.03
   PulseCurve:
     serializedVersion: 2
     m_Curve:
@@ -3182,7 +3182,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FitToCamera: 1
   EnablePulse: 1
-  PulseAmount: 0.06
+  PulseAmount: 0.03
   PulseCurve:
     serializedVersion: 2
     m_Curve:
