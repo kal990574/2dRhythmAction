@@ -2038,12 +2038,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60919df46991b3b4695528da6ab29d13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BPM: 135
+  BPM: 270
   AutoGenerate: 1
   AutoNoteCount: 300
   StartBeat: 10
   BeatsInterval: 2
-  NoteTravelTime: 1
+  UseSections: 1
+  BeatSections:
+  - StartTime: 6.2
+    EndTime: 18
+    BeatsInterval: 8
+  - StartTime: 19
+    EndTime: 31
+    BeatsInterval: 4
+  - StartTime: 32
+    EndTime: 46
+    BeatsInterval: 2
+  - StartTime: 47
+    EndTime: 59
+    BeatsInterval: 1
+  - StartTime: 60
+    EndTime: 74
+    BeatsInterval: 8
+  - StartTime: 75
+    EndTime: 90
+    BeatsInterval: 4
+  - StartTime: 91
+    EndTime: 103
+    BeatsInterval: 2
+  - StartTime: 103
+    EndTime: 118
+    BeatsInterval: 6
+  - StartTime: 119
+    EndTime: 131
+    BeatsInterval: 2
+  - StartTime: 132
+    EndTime: 143
+    BeatsInterval: 4
+  - StartTime: 144
+    EndTime: 147
+    BeatsInterval: 1
   Notes: []
 --- !u!1 &784610849
 GameObject:
@@ -3662,8 +3696,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b73dd4355f0f4c04190d1872e1597638, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxLife: 5
-  CurrentLife: 5
+  MaxLife: 100
+  CurrentLife: 100
   Score: 0
   CurrentCombo: 0
   MaxCombo: 0
