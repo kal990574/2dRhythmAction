@@ -8,8 +8,13 @@ public class NoteController : MonoBehaviour
     public float NoteTravelTime = 5f;
 
     [Header("Spawn & Judge Position")]
-    public Transform SpawnPosition;    
-    public Transform JudgeLinePosition; 
+    public Transform SpawnPosition;
+    public Transform JudgeLinePosition;
+
+    [Header("Random Y Position")]
+    public bool RandomizeYPosition = true;
+    public float MinYOffset = -2f;
+    public float MaxYOffset = 2f;
 
     [Header("Note Prefabs")]
     public GameObject NotePrefabUp;
@@ -89,7 +94,16 @@ public class NoteController : MonoBehaviour
             return;
         }
 
-        GameObject noteObj = Instantiate(prefab, SpawnPosition.position, Quaternion.identity, transform);
+        Vector3 spawnPos = SpawnPosition.position;
+
+        // Y값 랜덤화
+        if (RandomizeYPosition)
+        {
+            float randomY = Random.Range(MinYOffset, MaxYOffset);
+            spawnPos.y += randomY;
+        }
+
+        GameObject noteObj = Instantiate(prefab, spawnPos, Quaternion.identity, transform);
         note.NoteObject = noteObj;
         activeNotes.Add(note);
 

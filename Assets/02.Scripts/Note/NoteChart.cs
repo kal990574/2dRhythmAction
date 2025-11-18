@@ -8,8 +8,8 @@ public class NoteChart : MonoBehaviour
 
     [Header("Auto Generation")]
     public bool AutoGenerate = true;
-    public int AutoNoteCount = 30;
-    public int StartBeat = 10;
+    public int AutoNoteCount = 50;
+    public int StartBeat = 15;
     public int BeatsInterval = 2;
     public float NoteTravelTime = 5f;
 

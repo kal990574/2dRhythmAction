@@ -6,8 +6,10 @@ public class CameraShake : MonoBehaviour
     public static CameraShake Instance { get; private set; }
 
     [Header("Shake Settings")]
-    public float DefaultDuration = 0.15f;
-    public float DefaultMagnitude = 0.1f;
+    public float PerfectDuration = 0.3f;
+    public float PerfectMagnitude = 0.7f;
+    public float GoodDuration = 0.2f;
+    public float GoodMagnitude = 0.5f;
 
     private Vector3 originalPosition;
     private bool isShaking = false;
@@ -29,34 +31,28 @@ public class CameraShake : MonoBehaviour
         originalPosition = transform.localPosition;
     }
 
-    public void Shake()
-    {
-        Shake(DefaultDuration, DefaultMagnitude);
-    }
-
-    public void Shake(float duration, float magnitude)
-    {
-        if (!isShaking)
-        {
-            StartCoroutine(ShakeCoroutine(duration, magnitude));
-        }
-    }
-
     public void ShakeByJudgement(JudgementType judgement)
     {
         switch (judgement)
         {
             case JudgementType.Perfect:
-                Shake(0.2f, 0.15f);  // 강한 흔들림
+                Shake(PerfectDuration, PerfectMagnitude); 
                 break;
 
             case JudgementType.Good:
-                Shake(0.15f, 0.1f);  // 중간 흔들림
+                Shake(GoodDuration, GoodMagnitude);  
                 break;
 
             case JudgementType.Miss:
-                // Miss는 흔들림 없음
                 break;
+        }
+    }
+    
+    public void Shake(float duration, float magnitude)
+    {
+        if (!isShaking)
+        {
+            StartCoroutine(ShakeCoroutine(duration, magnitude));
         }
     }
 
