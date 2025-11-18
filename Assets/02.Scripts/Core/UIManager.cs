@@ -14,9 +14,10 @@ public class UIManager : MonoBehaviour
     public Sprite EmptyHeartSprite;
 
     [Header("UI Text References")]
-    public TextMeshProUGUI ScoreText;
-    public TextMeshProUGUI MaxComboText;
-    public TextMeshProUGUI CurrentComboText;
+    public TextMeshProUGUI ScoreTextUI;
+    public TextMeshProUGUI MaxComboText1UI;
+    public TextMeshProUGUI MaxComboText2UI;
+    public TextMeshProUGUI CurrentComboTextUI;
 
     [Header("Judgement Display")]
     public TextMeshProUGUI JudgementText;
@@ -121,31 +122,31 @@ public class UIManager : MonoBehaviour
 
     public void UpdateScore(int score)
     {
-        if (ScoreText != null)
+        if (ScoreTextUI != null)
         {
-            ScoreText.text = $"SCORE: {score}";
+            ScoreTextUI.text = $"{score:N0}";
         }
     }
 
     public void UpdateMaxCombo(int maxCombo)
     {
-        if (MaxComboText != null)
+        if (MaxComboText2UI != null)
         {
-            MaxComboText.text = $"MAX COMBO: {maxCombo}";
+            MaxComboText2UI.text = $"{maxCombo}";
         }
     }
 
     public void UpdateCurrentCombo(int currentCombo)
     {
-        if (CurrentComboText != null)
+        if (CurrentComboTextUI != null)
         {
             if (currentCombo > 0)
             {
-                CurrentComboText.text = $"{currentCombo} COMBO";
+                CurrentComboTextUI.text = $"{currentCombo} COMBO";
             }
             else
             {
-                CurrentComboText.text = "";
+                CurrentComboTextUI.text = "";
             }
         }
     }
