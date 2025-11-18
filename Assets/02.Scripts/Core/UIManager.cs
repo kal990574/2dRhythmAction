@@ -24,6 +24,12 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI JudgementText;
     public float JudgementDisplayDuration = 0.5f;
 
+    [Header("Game Over UI")]
+    public GameObject GameOverPanel;
+    public TextMeshProUGUI GameOverText;
+    public UnityEngine.UI.Button RestartButton;
+    public UnityEngine.UI.Button QuitButton;
+
     [Header("DOTween Animation Settings")]
     [Header("Score Animation")]
     public float ScorePunchStrength = 0.15f;
@@ -67,6 +73,26 @@ public class UIManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+    }
+
+    private void Start()
+    {
+        // GameOver 패널 초기 비활성화
+        if (GameOverPanel != null)
+        {
+            GameOverPanel.SetActive(false);
+        }
+
+        // 버튼 이벤트 연결
+        if (RestartButton != null)
+        {
+            RestartButton.onClick.AddListener(OnRestartClicked);
+        }
+
+        if (QuitButton != null)
+        {
+            QuitButton.onClick.AddListener(OnQuitClicked);
         }
     }
 
@@ -248,6 +274,55 @@ public class UIManager : MonoBehaviour
         {
             JudgementText.text = "";
         }
+
+        HideGameOver();
+    }
+
+    public void ShowGameOver()
+    {
+        if (GameOverPanel == null)
+        {
+            Debug.LogWarning("GameOverPanel이 할당되지 않았습니다!");
+            return;
+        }
+
+        GameOverPanel.SetActive(true);
+
+        // GameOver 텍스트 애니메이션
+        if (GameOverText != null)
+        {
+            GameOverText.transform.localScale = Vector3.zero;
+            GameOverText.transform.DOScale(Vector3.one, 0.5f)
+                .SetEase(Ease.OutBack);
+        }
+
+        Debug.Log("Game Over UI 표시");
+    }
+
+    public void HideGameOver()
+    {
+        if (GameOverPanel != null)
+        {
+            GameOverPanel.SetActive(false);
+        }
+    }
+
+    private void OnRestartClicked()
+    {
+        Debug.Log("Restart 버튼 클릭");
+        HideGameOver();
+        GameManager.Instance?.RestartGame();
+    }
+
+    private void OnQuitClicked()
+    {
+        Debug.Log("Quit 버튼 클릭");
+
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+        #else
+            Application.Quit();
+        #endif
     }
 
     // ========== DOTween 애니메이션 함수들 ==========
