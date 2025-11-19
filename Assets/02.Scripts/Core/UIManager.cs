@@ -27,7 +27,14 @@ public class UIManager : MonoBehaviour
     [Header("Game Over UI")]
     public GameObject GameOverPanel;
     public TextMeshProUGUI GameOverText;
+    public TextMeshProUGUI GameOverScoreText;
     public Button QuitButton;
+
+    [Header("Game Clear UI")]
+    public GameObject GameClearPanel;
+    public TextMeshProUGUI GameClearText;
+    public TextMeshProUGUI FinalScoreText;
+    public Button ClearQuitButton;
 
     [Header("DOTween Animation Settings")]
     [Header("Score Animation")]
@@ -83,10 +90,21 @@ public class UIManager : MonoBehaviour
             GameOverPanel.SetActive(false);
         }
 
+        // GameClear 패널 초기 비활성화
+        if (GameClearPanel != null)
+        {
+            GameClearPanel.SetActive(false);
+        }
+
         // 버튼 이벤트 연결
         if (QuitButton != null)
         {
             QuitButton.onClick.AddListener(OnQuitClicked);
+        }
+
+        if (ClearQuitButton != null)
+        {
+            ClearQuitButton.onClick.AddListener(OnQuitClicked);
         }
     }
 
@@ -267,6 +285,12 @@ public class UIManager : MonoBehaviour
 
         GameOverPanel.SetActive(true);
 
+        // 점수 표시
+        if (GameOverScoreText != null && PlayerController.Instance != null)
+        {
+            GameOverScoreText.text = $"SCORE: {PlayerController.Instance.Score:N0}";
+        }
+
         // GameOver 텍스트 애니메이션
         if (GameOverText != null)
         {
@@ -276,6 +300,33 @@ public class UIManager : MonoBehaviour
         }
 
         Debug.Log("Game Over UI 표시");
+    }
+
+    public void ShowGameClear()
+    {
+        if (GameClearPanel == null)
+        {
+            Debug.LogWarning("GameClearPanel이 할당되지 않았습니다!");
+            return;
+        }
+
+        GameClearPanel.SetActive(true);
+
+        // 최종 점수 표시
+        if (FinalScoreText != null && PlayerController.Instance != null)
+        {
+            FinalScoreText.text = $"SCORE: {PlayerController.Instance.Score:N0}";
+        }
+
+        // GameClear 텍스트 애니메이션
+        if (GameClearText != null)
+        {
+            GameClearText.transform.localScale = Vector3.zero;
+            GameClearText.transform.DOScale(Vector3.one, 0.5f)
+                .SetEase(Ease.OutBack);
+        }
+
+        Debug.Log("Game Clear UI 표시");
     }
 
     private void OnQuitClicked()

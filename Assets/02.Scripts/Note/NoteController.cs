@@ -81,6 +81,7 @@ public class NoteController : MonoBehaviour
         SpawnNotes();
         MoveNotes();
         CheckMissedNotes();
+        CheckGameClear();
     }
 
     private void SpawnNotes()
@@ -249,5 +250,17 @@ public class NoteController : MonoBehaviour
         }
 
         return closestNote;
+    }
+
+    private void CheckGameClear()
+    {
+        // 모든 노트를 스폰했고, 활성 노트도 없으면 게임 클리어
+        if (NoteChart != null &&
+            nextNoteIndex >= NoteChart.Notes.Count &&  // 모든 노트 스폰 완료
+            activeNotes.Count == 0)                     // 모든 노트 처리 완료
+        {
+            GameManager.Instance?.GameClear();
+            Debug.Log("모든 노트 처리 완료! 게임 클리어!");
+        }
     }
 }
