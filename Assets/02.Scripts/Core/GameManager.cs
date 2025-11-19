@@ -38,7 +38,24 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         CurrentState = GameState.GameOver;
+
+        // 음악 정지
+        SoundManager.Instance?.StopMusic();
+
+        // GameOver UI 표시
+        UIManager.Instance?.ShowGameOver();
+
         Debug.Log("게임 오버");
+    }
+
+    public void GameClear()
+    {
+        CurrentState = GameState.GameClear;
+
+        // GameClear UI 표시
+        UIManager.Instance?.ShowGameClear();
+
+        Debug.Log("게임 클리어!");
     }
 }
 
@@ -47,5 +64,6 @@ public enum GameState
     Ready,
     Playing,
     Paused,
-    GameOver
+    GameOver,
+    GameClear
 }

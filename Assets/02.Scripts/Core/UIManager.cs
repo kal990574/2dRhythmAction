@@ -24,6 +24,18 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI JudgementText;
     public float JudgementDisplayDuration = 0.5f;
 
+    [Header("Game Over UI")]
+    public GameObject GameOverPanel;
+    public TextMeshProUGUI GameOverText;
+    public TextMeshProUGUI GameOverScoreText;
+    public Button QuitButton;
+
+    [Header("Game Clear UI")]
+    public GameObject GameClearPanel;
+    public TextMeshProUGUI GameClearText;
+    public TextMeshProUGUI FinalScoreText;
+    public Button ClearQuitButton;
+
     [Header("DOTween Animation Settings")]
     [Header("Score Animation")]
     public float ScorePunchStrength = 0.15f;
@@ -67,6 +79,32 @@ public class UIManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+    }
+
+    private void Start()
+    {
+        // GameOver 패널 초기 비활성화
+        if (GameOverPanel != null)
+        {
+            GameOverPanel.SetActive(false);
+        }
+
+        // GameClear 패널 초기 비활성화
+        if (GameClearPanel != null)
+        {
+            GameClearPanel.SetActive(false);
+        }
+
+        // 버튼 이벤트 연결
+        if (QuitButton != null)
+        {
+            QuitButton.onClick.AddListener(OnQuitClicked);
+        }
+
+        if (ClearQuitButton != null)
+        {
+            ClearQuitButton.onClick.AddListener(OnQuitClicked);
         }
     }
 
@@ -237,17 +275,69 @@ public class UIManager : MonoBehaviour
         AnimateJudgement(judgement);
     }
 
-    public void ResetUI()
+    public void ShowGameOver()
     {
-        UpdateLife(3, 3);
-        UpdateScore(0);
-        UpdateMaxCombo(0);
-        UpdateCurrentCombo(0);
-
-        if (JudgementText != null)
+        if (GameOverPanel == null)
         {
-            JudgementText.text = "";
+            Debug.LogWarning("GameOverPanel이 할당되지 않았습니다!");
+            return;
         }
+
+        GameOverPanel.SetActive(true);
+
+        // 점수 표시
+        if (GameOverScoreText != null && PlayerController.Instance != null)
+        {
+            GameOverScoreText.text = $"SCORE: {PlayerController.Instance.Score:N0}";
+        }
+
+        // GameOver 텍스트 애니메이션
+        if (GameOverText != null)
+        {
+            GameOverText.transform.localScale = Vector3.zero;
+            GameOverText.transform.DOScale(Vector3.one, 0.5f)
+                .SetEase(Ease.OutBack);
+        }
+
+        Debug.Log("Game Over UI 표시");
+    }
+
+    public void ShowGameClear()
+    {
+        if (GameClearPanel == null)
+        {
+            Debug.LogWarning("GameClearPanel이 할당되지 않았습니다!");
+            return;
+        }
+
+        GameClearPanel.SetActive(true);
+
+        // 최종 점수 표시
+        if (FinalScoreText != null && PlayerController.Instance != null)
+        {
+            FinalScoreText.text = $"SCORE: {PlayerController.Instance.Score:N0}";
+        }
+
+        // GameClear 텍스트 애니메이션
+        if (GameClearText != null)
+        {
+            GameClearText.transform.localScale = Vector3.zero;
+            GameClearText.transform.DOScale(Vector3.one, 0.5f)
+                .SetEase(Ease.OutBack);
+        }
+
+        Debug.Log("Game Clear UI 표시");
+    }
+
+    private void OnQuitClicked()
+    {
+        Debug.Log("Quit 버튼 클릭");
+
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+        #else
+            Application.Quit();
+        #endif
     }
 
     // ========== DOTween 애니메이션 함수들 ==========
@@ -258,6 +348,7 @@ public class UIManager : MonoBehaviour
 
         // 작은 펀치 스케일 효과
         ScoreTextUI.transform.DOKill();
+        ScoreTextUI.transform.localScale = Vector3.one; // Scale 리셋
         ScoreTextUI.transform.DOPunchScale(Vector3.one * ScorePunchStrength, ScorePunchDuration, 5, 0.5f)
             .SetEase(Ease.OutQuad);
     }
@@ -268,6 +359,7 @@ public class UIManager : MonoBehaviour
 
         // 큰 펀치 스케일 + 살짝 튕기는 효과
         CurrentComboTextUI.transform.DOKill();
+        CurrentComboTextUI.transform.localScale = Vector3.one; // Scale 리셋
         CurrentComboTextUI.transform.DOPunchScale(Vector3.one * ComboPunchStrength, ComboPunchDuration, 8, 0.8f)
             .SetEase(Ease.OutBack);
     }
@@ -288,6 +380,8 @@ public class UIManager : MonoBehaviour
         if (MaxComboText1UI != null)
         {
             MaxComboText1UI.DOKill();
+            MaxComboText1UI.transform.DOKill();
+            MaxComboText1UI.transform.localScale = Vector3.one; // Scale 리셋
             Color originalColor1 = MaxComboText1UI.color;
             Sequence seq1 = DOTween.Sequence();
             seq1.Append(MaxComboText1UI.DOColor(Color.blue, MaxComboFlashDuration));
@@ -298,6 +392,8 @@ public class UIManager : MonoBehaviour
         if (MaxComboText2UI != null)
         {
             MaxComboText2UI.DOKill();
+            MaxComboText2UI.transform.DOKill();
+            MaxComboText2UI.transform.localScale = Vector3.one; // Scale 리셋
             Color originalColor2 = MaxComboText2UI.color;
             Sequence seq2 = DOTween.Sequence();
             seq2.Append(MaxComboText2UI.DOColor(Color.blue, MaxComboFlashDuration));

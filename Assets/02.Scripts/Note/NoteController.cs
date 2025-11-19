@@ -26,6 +26,7 @@ public class NoteController : MonoBehaviour
     private int nextNoteIndex = 0;
     private SoundManager soundManager;
     private float noteSpeed;
+    private bool isInitialized = false;
 
     private void Start()
     {
@@ -41,15 +42,35 @@ public class NoteController : MonoBehaviour
         float distance = Vector3.Distance(SpawnPosition.position, JudgeLinePosition.position);
         noteSpeed = distance / NoteTravelTime;
 
-        // 모든 노트의 SpawnTime 계산
-        if (NoteChart != null)
+        // NoteChart 초기화 대기 및 SpawnTime 계산
+        StartCoroutine(InitializeNotes());
+    }
+
+    private System.Collections.IEnumerator InitializeNotes()
+    {
+        // NoteChart의 Start()가 실행될 시간을 주기 위해 한 프레임 대기
+        yield return null;
+
+        if (NoteChart == null)
         {
-            foreach (var note in NoteChart.Notes)
-            {
-                note.CalculateSpawnTime(NoteTravelTime);
-            }
-            Debug.Log($"노트 SpawnTime 계산 완료");
+            Debug.LogError("NoteChart가 할당되지 않았습니다!");
+            yield break;
         }
+
+        if (NoteChart.Notes.Count == 0)
+        {
+            Debug.LogWarning("NoteChart에 노트가 없습니다!");
+            yield break;
+        }
+
+        // 모든 노트의 SpawnTime 계산
+        foreach (var note in NoteChart.Notes)
+        {
+            note.CalculateSpawnTime(NoteTravelTime);
+        }
+
+        isInitialized = true;
+        Debug.Log($"노트 SpawnTime 계산 완료: {NoteChart.Notes.Count}개 노트");
     }
 
     private void Update()
@@ -60,11 +81,12 @@ public class NoteController : MonoBehaviour
         SpawnNotes();
         MoveNotes();
         CheckMissedNotes();
+        CheckGameClear();
     }
 
     private void SpawnNotes()
     {
-        if (NoteChart == null || nextNoteIndex >= NoteChart.Notes.Count)
+        if (!isInitialized || NoteChart == null || nextNoteIndex >= NoteChart.Notes.Count)
             return;
 
         float currentTime = soundManager.SongPosition;
@@ -228,5 +250,17 @@ public class NoteController : MonoBehaviour
         }
 
         return closestNote;
+    }
+
+    private void CheckGameClear()
+    {
+        // 모든 노트를 스폰했고, 활성 노트도 없으면 게임 클리어
+        if (NoteChart != null &&
+            nextNoteIndex >= NoteChart.Notes.Count &&  // 모든 노트 스폰 완료
+            activeNotes.Count == 0)                     // 모든 노트 처리 완료
+        {
+            GameManager.Instance?.GameClear();
+            Debug.Log("모든 노트 처리 완료! 게임 클리어!");
+        }
     }
 }
