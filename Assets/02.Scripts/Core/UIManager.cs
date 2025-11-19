@@ -28,12 +28,14 @@ public class UIManager : MonoBehaviour
     public GameObject GameOverPanel;
     public TextMeshProUGUI GameOverText;
     public TextMeshProUGUI GameOverScoreText;
+    public TextMeshProUGUI GameOverHighScoreText;
     public Button QuitButton;
 
     [Header("Game Clear UI")]
     public GameObject GameClearPanel;
     public TextMeshProUGUI GameClearText;
     public TextMeshProUGUI FinalScoreText;
+    public TextMeshProUGUI FinalHighScoreText;
     public Button ClearQuitButton;
 
     [Header("DOTween Animation Settings")]
@@ -291,6 +293,12 @@ public class UIManager : MonoBehaviour
             GameOverScoreText.text = $"SCORE: {PlayerController.Instance.Score:N0}";
         }
 
+        // 최고점수 표시
+        if (GameOverHighScoreText != null && PlayerController.Instance != null)
+        {
+            GameOverHighScoreText.text = $"HIGH SCORE: {PlayerController.Instance.HighScore:N0}";
+        }
+
         // GameOver 텍스트 애니메이션
         if (GameOverText != null)
         {
@@ -316,6 +324,12 @@ public class UIManager : MonoBehaviour
         if (FinalScoreText != null && PlayerController.Instance != null)
         {
             FinalScoreText.text = $"SCORE: {PlayerController.Instance.Score:N0}";
+        }
+
+        // 최고점수 표시
+        if (FinalHighScoreText != null && PlayerController.Instance != null)
+        {
+            FinalHighScoreText.text = $"HIGH SCORE: {PlayerController.Instance.HighScore:N0}";
         }
 
         // GameClear 텍스트 애니메이션

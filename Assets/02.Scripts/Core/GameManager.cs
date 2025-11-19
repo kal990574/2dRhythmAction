@@ -52,6 +52,9 @@ public class GameManager : MonoBehaviour
     {
         CurrentState = GameState.GameClear;
 
+        // 최고점수 업데이트
+        PlayerController.Instance?.OnGameClear();
+
         // GameClear UI 표시
         UIManager.Instance?.ShowGameClear();
 

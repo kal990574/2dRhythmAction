@@ -10,11 +10,14 @@ public class PlayerController : MonoBehaviour
     public int Score = 0;
     public int CurrentCombo = 0;
     public int MaxCombo = 0;
+    public int HighScore { get; private set; } = 0;
 
     [Header("Score Settings")]
     public int PerfectScore = 100;
     public int GoodScore = 50;
     public float ComboMultiplier = 0.2f;
+
+    private const string HIGH_SCORE_KEY = "HighScore";
 
     private void Awake()
     {
@@ -31,6 +34,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        LoadHighScore();
         ResetPlayer();
     }
 
@@ -117,7 +121,38 @@ public class PlayerController : MonoBehaviour
 
     private void GameOver()
     {
+        UpdateHighScore();
         Debug.Log("Game Over!");
         GameManager.Instance?.GameOver();
+    }
+
+    // ========== PlayerPrefs를 사용한 최고점수 관리 ==========
+
+    private void LoadHighScore()
+    {
+        HighScore = PlayerPrefs.GetInt(HIGH_SCORE_KEY, 0);
+        Debug.Log($"최고점수 불러오기: {HighScore}");
+    }
+
+    private void SaveHighScore()
+    {
+        PlayerPrefs.SetInt(HIGH_SCORE_KEY, HighScore);
+        PlayerPrefs.Save();
+        Debug.Log($"최고점수 저장: {HighScore}");
+    }
+
+    private void UpdateHighScore()
+    {
+        if (Score > HighScore)
+        {
+            HighScore = Score;
+            SaveHighScore();
+            Debug.Log($"새로운 최고점수 달성! {HighScore}");
+        }
+    }
+
+    public void OnGameClear()
+    {
+        UpdateHighScore();
     }
 }
