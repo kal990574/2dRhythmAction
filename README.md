@@ -1,6 +1,8 @@
 # 🎵 2D Rhythm Action                                                                                                            
                                                                                                                                  
-  > BPM에 맞춰 화살표를 베는 2D 리듬 액션 게임                                                                                         
+  > BPM에 맞춰 화살표를 베는 2D 리듬 액션 게임
+
+  [![게임 플레이 영상](https://img.youtube.com/vi/cxoRkoQA_B4/0.jpg)](https://www.youtube.com/watch?v=cxoRkoQA_B4)                                                                                       
    
   ## 📋 프로젝트 개요                                                                                                              
                                                                                                                                  
